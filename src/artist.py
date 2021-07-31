@@ -13,7 +13,9 @@ class Artist:
                 self.titles[msc_obj.title] = msc_obj
             else:
                 self.titles[msc_obj.title].duplicated = True
-                self.titles[msc_obj.title].add_playlist_presence(*msc_obj.get_playlist_presence())
+                for pl_name in msc_obj.get_playlist_presence():
+                    self.titles[msc_obj.title].add_playlist_presence(pl_name=pl_name,
+                                                                     timestamp=msc_obj.in_playlist[pl_name])
 
     def get_duplicates(self):
         duplicates = []

@@ -17,6 +17,6 @@ if __name__ == '__main__':
     print('number of artists : ' + str(msc_lib.nb_artists))
     print('number of songs : ' + str(msc_lib.nb_songs))
     print('number of duplicate : ' + str(msc_lib.nb_duplicates))
-    for duplicate in msc_lib.all_songs:
+    for duplicate in msc_lib.get_duplicates():
         print(duplicate)
     print('end.')
