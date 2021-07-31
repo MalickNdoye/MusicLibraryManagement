@@ -40,7 +40,7 @@ class Playlist:
     def read_songs(self):
         try:
             self._get_name_from_file()
-            with open(self.filename) as file:
+            with open(self.filename, encoding='utf-8') as file:
                 for line in file:
                     if 'Title' not in line and len(line) > 6:
                         timestamp, song = _parse_time_stamp(line)

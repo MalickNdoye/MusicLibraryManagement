@@ -9,7 +9,7 @@ class MusicTitle:
         self.duplicated = False
 
     def __str__(self):
-        basic_format = '{:<20}|{:<40}| {}'
+        basic_format = '{:<35}| {:<36}| {}'
         pp = ""
         for pl in self.in_playlist:
             one_play = pl + '('

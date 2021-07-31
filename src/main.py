@@ -17,6 +17,18 @@ if __name__ == '__main__':
     print('number of artists : ' + str(msc_lib.nb_artists))
     print('number of songs : ' + str(msc_lib.nb_songs))
     print('number of duplicate : ' + str(msc_lib.nb_duplicates))
-    for duplicate in msc_lib.get_duplicates():
-        print(duplicate)
+
+    with open(os.path.join(directory, "all_songs.txt"), 'w', encoding='utf-8') as file:
+        lines = []
+        for duplicate in msc_lib.all_songs:
+            # print(duplicate)
+            lines.append(str(duplicate) + '\n')
+        file.writelines(lines)
+
+    with open(os.path.join(directory, "duplicated_songs.txt"), 'w', encoding='utf-8') as file:
+        lines = []
+        for duplicate in msc_lib.get_duplicates():
+            # print(duplicate)
+            line = str(duplicate) + '\n'
+        file.writelines(lines)
     print('end.')
