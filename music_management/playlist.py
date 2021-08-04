@@ -1,4 +1,4 @@
-from src.music import MusicTitle
+from music_management.music import MusicTitle
 
 
 def _parse_time_stamp(line):

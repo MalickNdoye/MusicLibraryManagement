@@ -1,6 +1,6 @@
-from src.artist import Artist
-from src.music import MusicTitle
-from src.playlist import Playlist
+from music_management.artist import Artist
+from music_management.music import MusicTitle
+from music_management.playlist import Playlist
 
 
 class MusicLibrary:

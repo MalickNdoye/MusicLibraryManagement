@@ -1,7 +1,7 @@
 import os.path
 
-from src.library import MusicLibrary
-from src.playlist import Playlist
+from music_management.library import MusicLibrary
+from music_management.playlist import Playlist
 
 if __name__ == '__main__':
     msc_lib = MusicLibrary()
