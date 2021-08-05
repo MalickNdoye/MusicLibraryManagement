@@ -11,7 +11,7 @@ if __name__ == '__main__':
     directory = os.path.join(os.path.curdir, 'Title')
     for i in range(1, 35):
         path = os.path.join(directory, f"{i:03}.txt")
-        playlist = read_songs_from_playlist(path)
+        playlist = read_songs_from_playlist(path, pl_id=f"{i:03}")
         nb_songs += playlist.size
         msc_lib.add_playlist(playlist)
     print('number of songs loaded : ' + str(nb_songs))

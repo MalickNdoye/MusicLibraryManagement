@@ -28,17 +28,17 @@ def _get_name_from_file(filename):
         print(err)
 
 
-def read_songs_from_playlist(filename):
+def read_songs_from_playlist(filename, pl_id='0'):
     try:
-        title = _get_name_from_file(filename)
-        playlist = Playlist(name=title)
+        pl_title = _get_name_from_file(filename)
+        playlist = Playlist(name=pl_title, pl_id=pl_id)
         with open(filename, encoding='utf-8') as file:
             for line in file:
                 if 'Title' not in line and len(line) > 6:
                     timestamp, song = _parse_time_stamp(line)
                     artist, title = _parse_song(song)
                     msc = MusicTitle(artist, title)
-                    msc.add_playlist_presence(title, timestamp)
+                    msc.add_playlist_presence(pl_title, timestamp)
                     playlist.add_music(msc)
         return playlist
     except IOError as err:
