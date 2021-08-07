@@ -1,3 +1,4 @@
+from music_management import logger
 from music_management.music import MusicTitle
 from music_management.playlist import Playlist
 
@@ -32,6 +33,7 @@ def read_songs_from_playlist(filename, pl_id='0'):
     try:
         pl_title = _get_name_from_file(filename)
         playlist = Playlist(name=pl_title, pl_id=pl_id)
+        logger.info('Opening and reading the file : '+filename)
         with open(filename, encoding='utf-8') as file:
             for line in file:
                 if 'Title' not in line and len(line) > 6:
@@ -40,6 +42,7 @@ def read_songs_from_playlist(filename, pl_id='0'):
                     msc = MusicTitle(artist, title)
                     msc.add_playlist_presence(pl_title, timestamp)
                     playlist.add_music(msc)
+        logger.info('Closing file : ' + filename)
         return playlist
     except IOError as err:
         print(err)

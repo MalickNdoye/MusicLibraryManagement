@@ -1,3 +1,4 @@
+from music_management import logger
 from music_management.music import MusicTitle
 
 
@@ -6,11 +7,13 @@ class Artist:
     def __init__(self, name='', msc=MusicTitle(artist='')):
         self.name = name
         self.titles = {msc.title: msc}
+        logger.info('Creating %s as Artist.',  self.name)
 
     def add_song(self, msc_obj):
         if isinstance(msc_obj, MusicTitle):
             if self.titles.get(msc_obj.title, None) is None:
                 self.titles[msc_obj.title] = msc_obj
+                logger.info('Adding the song (%s) to %s catalog', msc_obj.title, self.name)
             else:
                 self.titles[msc_obj.title].duplicated = True
                 for pl_name in msc_obj.get_playlist_presence():

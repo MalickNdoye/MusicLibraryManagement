@@ -1,3 +1,4 @@
+from music_management import logger
 from music_management.artist import Artist
 from music_management.music import MusicTitle
 from music_management.playlist import Playlist
@@ -20,6 +21,7 @@ class MusicLibrary:
                 self.artists[singer] = Artist(name=singer, msc=msc_obj)
         else:
             self.uncategorized.append(msc_obj)
+            logger.info('Unknown object'+msc_obj)
 
     @property
     def nb_artists(self):
@@ -62,3 +64,4 @@ class MusicLibrary:
                 self.add_song(song)
         else:
             self.uncategorized.append(msc_obj)
+            logger.info('Unknown object'+msc_obj)
