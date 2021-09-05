@@ -33,3 +33,10 @@ class MusicTitle:
 
     def get_playlist_presence(self):
         return self.in_playlist
+
+    def csv_str(self):
+        csv_line = ''
+        for playlist in self.in_playlist:
+            for time in self.in_playlist[playlist]:
+              csv_line += self.artist + ';' + self.title + ';' + playlist + ';' + f'{time//60:02}:{time%60:02}' + ';\n'
+        return csv_line
