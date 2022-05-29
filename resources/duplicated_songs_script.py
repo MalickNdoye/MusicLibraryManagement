@@ -8,5 +8,4 @@ if __name__ == '__main__':
     directory, msc_lib = main()
     write_songs_in_file(os.path.join(directory, "duplicated_songs.txt"), *msc_lib.get_duplicates())
     write_songs_in_csv_file(os.path.join(directory, "duplicated_songs.csv"), *msc_lib.get_duplicates())
-
     logger.info('end.')
