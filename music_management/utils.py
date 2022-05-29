@@ -52,8 +52,7 @@ def append_title_to_file(file_name):
 
 
 def update_compilation_title():
-    cs_dir = os.path.join('D:\\', 'Music', 'Classement par Genre', 'Ambient', 'Chillout Soundscapes', '*.mp3')
-    cs_songs = glob.glob(cs_dir)
+    cs_songs = glob.glob(CS_DIR)
     base_name = []
     song_id = []
     for path in cs_songs:
