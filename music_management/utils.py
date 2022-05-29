@@ -4,6 +4,7 @@ import os
 
 from music_management.filereader import read_songs_from_playlist
 from music_management.library import MusicLibrary
+from music_management import CS_DIR, MAIN_DIR
 
 cs_title = {'001.txt': 'Lost Imagination',
             '002.txt': 'Dust to Discovery',
@@ -85,7 +86,7 @@ def main():
     # logger.addHandler(logging.StreamHandler())
     msc_lib = MusicLibrary()
     nb_songs = 0
-    directory = os.path.join(os.path.curdir, 'Title')
+    directory = os.path.join(MAIN_DIR, 'Title')
     for i in range(1, 35):
         path = os.path.join(directory, f"{i:03}.txt")
         playlist = read_songs_from_playlist(path, pl_id=f"{i:03}")
