@@ -11,7 +11,7 @@ class MusicLibrary:
         self.playlists = {}
         self.uncategorized = []
 
-    def add_song(self, msc_obj):
+    def add_song(self, msc_obj: MusicTitle) -> None:
         if isinstance(msc_obj, MusicTitle):
             singer = msc_obj.artist
             if self.artists.get(singer, None) is not None:
@@ -21,42 +21,42 @@ class MusicLibrary:
                 self.artists[singer] = Artist(name=singer, msc=msc_obj)
         else:
             self.uncategorized.append(msc_obj)
-            logger.info('Unknown object'+msc_obj)
+            logger.error('Unknown object : ' + str(msc_obj))
 
     @property
-    def nb_artists(self):
+    def nb_artists(self) -> int:
         return len(self.artists)
 
     @property
-    def nb_songs(self):
+    def nb_songs(self) -> int:
         nb = 0
         for artist in self.artists:
             nb += self.artists[artist].nb_songs
         return nb
 
     @property
-    def nb_duplicates(self):
+    def nb_duplicates(self) -> int:
         nb = 0
         for artist in self.artists:
             nb += self.artists[artist].nb_duplicate
         return nb
 
     @property
-    def all_songs(self):
+    def all_songs(self) -> list:
         songs = []
         for artist in self.artists.values():
             for song in artist.get_songs():
                 songs.append(song)
         return songs
 
-    def get_duplicates(self):
+    def get_duplicates(self) -> list:
         duplicates = []
         for artist in self.artists:
             for song in self.artists[artist].get_duplicates():
                 duplicates.append(song)
         return duplicates
 
-    def add_playlist(self, msc_obj):
+    def add_playlist(self, msc_obj) -> None:
         if isinstance(msc_obj, Playlist):
             if self.playlists.get(msc_obj.name, None) is None and msc_obj.name != '':
                 self.playlists[msc_obj.name] = msc_obj
@@ -64,4 +64,4 @@ class MusicLibrary:
                 self.add_song(song)
         else:
             self.uncategorized.append(msc_obj)
-            logger.info('Unknown object'+msc_obj)
+            logger.error('Unknown object : ' + str(msc_obj))

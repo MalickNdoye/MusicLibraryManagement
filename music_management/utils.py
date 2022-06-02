@@ -67,7 +67,7 @@ def update_compilation_title():
         cs_title[f"{song_id[i]}.txt"] = base_name[i]
 
 
-def set_logger_settings():
+def set_logger_settings() -> logging.Logger:
     logger_main = logging.getLogger('music_management')
     logger_main.setLevel(logging.INFO)
     # create console handler with a higher log level
@@ -81,7 +81,7 @@ def set_logger_settings():
     return logger_main
 
 
-def main():
+def main() -> (str, MusicLibrary):
     logger = logging.getLogger('music_management')
     # logger.addHandler(logging.StreamHandler())
     msc_lib = MusicLibrary()
