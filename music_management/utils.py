@@ -42,7 +42,13 @@ cs_title = {'001.txt': 'Lost Imagination',
             '034.txt': 'Light Synergy'}
 
 
-def append_title_to_file(file_name):
+def append_title_to_file(file_name) -> None:
+    """
+        Append a title of playlist depending on the file name
+    :param file_name: Name of the file
+    :return: Nothing
+    :rtype: None
+    """
     path = os.path.join(os.curdir, '..', 'resources', 'Title')
     filepath = os.path.join(path, file_name)
     with open(filepath, 'a') as file:
@@ -52,7 +58,12 @@ def append_title_to_file(file_name):
     print('end.')
 
 
-def update_compilation_title():
+def update_compilation_title() -> None:
+    """
+        Update the titles of playlists
+    :return: Nothing
+    :rtype: None
+    """
     cs_songs = glob.glob(CS_DIR)
     base_name = []
     song_id = []
@@ -67,7 +78,12 @@ def update_compilation_title():
         cs_title[f"{song_id[i]}.txt"] = base_name[i]
 
 
-def set_logger_settings():
+def set_logger_settings() -> logging.Logger:
+    """
+        Set up the log settings of the music_management package
+    :return: Main log object
+    :rtype: logging.Logger
+    """
     logger_main = logging.getLogger('music_management')
     logger_main.setLevel(logging.INFO)
     # create console handler with a higher log level
@@ -81,7 +97,12 @@ def set_logger_settings():
     return logger_main
 
 
-def main():
+def main() -> (str, MusicLibrary):
+    """
+        Default main prototype
+    :return: directory of the files generated and Music Library associated
+    :rtype: str, MusicLibrary
+    """
     logger = logging.getLogger('music_management')
     # logger.addHandler(logging.StreamHandler())
     msc_lib = MusicLibrary()
