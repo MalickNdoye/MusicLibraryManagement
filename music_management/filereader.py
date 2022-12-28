@@ -32,7 +32,7 @@ def _get_name_from_file(filename: str) -> str:
 def read_songs_from_playlist(filename: str, pl_id: str = '0') -> Playlist:
     try:
         pl_title = _get_name_from_file(filename)
-        playlist = Playlist(name=pl_title, pl_id=pl_id)
+        playlist = Playlist(name=pl_title, pl_id=int(pl_id))
         logger.info('Opening and reading the file : '+filename)
         with open(filename, encoding='utf-8') as file:
             for line in file:
