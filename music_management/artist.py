@@ -3,8 +3,8 @@ from music_management.music import MusicTitle
 from hashlib import sha256
 
 class Artist:
-    """Class that describe an artist.
-
+    """
+        Class that describe an artist
     :param name: The name of the artist
     :type name: str
     :param msc: The music that is linked to the artist

@@ -3,7 +3,14 @@ from music_management.music import MusicTitle
 from music_management.playlist import Playlist
 
 
-def _parse_time_stamp(line: str) -> (str, str):
+def _parse_time_stamp(line: str) -> (int, str):
+    """
+        Parse the timestamp and the song name from a string.
+        For example, "31:30 Killigrew - Coming Home" will return the couple of string (1890, "Killigrew - Coming Home")
+    :param line: A string matching the regex "[0-9]+:[0-9]{2} .*"
+    :return: the timestamp converted to seconds and the song artist and name
+    :rtype: int, str
+    """
     timestamp = line[0:5]
     song = line[6:-1]
     # time = "01:34"
@@ -12,6 +19,13 @@ def _parse_time_stamp(line: str) -> (str, str):
 
 
 def _parse_song(song: str) -> (str, str):
+    """
+        Parse the artist name and the title of the song from a string.
+        For example, "Killigrew - Coming Home" will return the couple of string ("Killigrew", "Coming Home")
+    :param song: A string matching the regex ".* - .*"
+    :return: The artist name and the title of the song
+    :rtype: str, str
+    """
     parse = song.split(' - ', 2)
     artist = parse[0]
     title = parse[1]
@@ -19,6 +33,15 @@ def _parse_song(song: str) -> (str, str):
 
 
 def _get_name_from_file(filename: str) -> str:
+    """
+        Get the name (of the playlist) from the file.
+        It searches the pattern "Title : .*" in the file and returns it.
+        Otherwise, it returns "Title not found in file"
+    :param filename: Path of the file
+    :return:  Name of the playlist
+    :rtype: str
+    :exception IOError when filename or file path is wrong
+    """
     try:
         with open(filename, encoding = 'utf-8') as file:
             for line in file:
@@ -30,6 +53,13 @@ def _get_name_from_file(filename: str) -> str:
 
 
 def read_songs_from_playlist(filename: str, pl_id: str = '0') -> Playlist:
+    """
+        Read songs from file and create the correct Playlist Object
+    :param filename: Path of the file
+    :param pl_id: ID of the playlist
+    :return: Playlist object
+    :rtype: Playlist
+    """
     try:
         pl_title = _get_name_from_file(filename)
         playlist = Playlist(name=pl_title, pl_id=int(pl_id))
