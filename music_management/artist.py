@@ -1,6 +1,6 @@
 from music_management import logger
 from music_management.music import MusicTitle
-from hashlib import sha256
+from hashlib import md5
 
 class Artist:
     """
@@ -15,9 +15,10 @@ class Artist:
     """
 
     def __init__(self, name: str = '', msc: MusicTitle = MusicTitle(artist='')) -> None:
-        self.artist_hash = sha256(name.lower().strip(' ')).hexdigest()
+        self.artist_hash = md5(name.lower().strip(' ').encode()).hexdigest()
         self.name = name
-        self.titles = {msc.title: msc}
+        self.titles = {}
+        self.add_song(msc)
         logger.info('Creating %s as Artist with the associated hash %s.',  self.name, self.artist_hash)
 
     def add_song(self, msc_obj: MusicTitle) -> None:
@@ -27,13 +28,13 @@ class Artist:
         :return: None
         """
         if isinstance(msc_obj, MusicTitle):
-            if self.titles.get(msc_obj.title, None) is None:
-                self.titles[msc_obj.title] = msc_obj
+            if self.titles.get(msc_obj.music_title_hash, None) is None:
+                self.titles[msc_obj.music_title_hash] = msc_obj
                 logger.info('Adding the song (%s) to %s catalog', msc_obj.title, self.name)
             else:
-                self.titles[msc_obj.title].duplicated = True
+                self.titles[msc_obj.music_title_hash].duplicated = True
                 for pl_name in msc_obj.get_playlist_presence():
-                    self.titles[msc_obj.title].add_playlist_presence(pl_name=pl_name,
+                    self.titles[msc_obj.music_title_hash].add_playlist_presence(pl_name=pl_name,
                                                                      timestamp=msc_obj.in_playlist[pl_name])
 
     def get_duplicates(self) -> list:
@@ -43,9 +44,9 @@ class Artist:
         :rtype: list
         """
         duplicates = []
-        for title in self.titles:
-            if self.titles[title].duplicated is True:
-                duplicates.append(self.titles[title])
+        for msc_hash in self.titles:
+            if self.titles[msc_hash].duplicated is True:
+                duplicates.append(self.titles[msc_hash])
         return duplicates
 
     def get_songs(self) -> list:

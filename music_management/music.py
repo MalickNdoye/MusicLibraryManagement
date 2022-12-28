@@ -1,3 +1,4 @@
+from hashlib import md5
 
 
 class MusicTitle:
@@ -21,6 +22,7 @@ class MusicTitle:
         :returns: Nothing
         :rtype: none
         """
+        self.music_title_hash = md5((artist.lower().strip(' ')+title.lower().strip(' ')).encode()).hexdigest()
         self.artist = artist
         self.title = title
         self.in_playlist = {}

@@ -1,4 +1,5 @@
 from music_management.music import MusicTitle
+from hashlib import md5
 
 
 class Playlist:
@@ -18,6 +19,7 @@ class Playlist:
         :param name: Name of the playlist
         :type name: str
         """
+        self.playlist_hash = md5(name.lower().strip(' ').encode()).hexdigest()
         self.id = pl_id
         self.name = name
         self.playlist = []
