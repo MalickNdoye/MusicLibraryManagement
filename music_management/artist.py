@@ -2,6 +2,7 @@ from music_management import logger
 from music_management.music import MusicTitle
 from hashlib import md5
 
+
 class Artist:
     """
         Class that describe an artist
@@ -19,7 +20,7 @@ class Artist:
         self.name = name
         self.titles = {}
         self.add_song(msc)
-        logger.info('Creating %s as Artist with the associated hash %s.',  self.name, self.artist_hash)
+        logger.info('Creating %s as Artist with the associated hash %s.', self.name, self.artist_hash)
 
     def add_song(self, msc_obj: MusicTitle) -> None:
         """
@@ -35,7 +36,7 @@ class Artist:
                 self.titles[msc_obj.music_title_hash].duplicated = True
                 for pl_name in msc_obj.get_playlist_presence():
                     self.titles[msc_obj.music_title_hash].add_playlist_presence(pl_name=pl_name,
-                                                                     timestamp=msc_obj.in_playlist[pl_name])
+                                                                                timestamp=msc_obj.in_playlist[pl_name])
 
     def get_duplicates(self) -> list:
         """

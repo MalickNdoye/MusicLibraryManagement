@@ -44,7 +44,7 @@ cs_title = {'001.txt': 'Lost Imagination',
 
 def append_title_to_file(file_name) -> None:
     """
-        Append a title of playlist depending on the file name
+        Append a title of playlist depending on the filename
     :param file_name: Name of the file
     :return: Nothing
     :rtype: None
@@ -90,7 +90,7 @@ def set_logger_settings() -> logging.Logger:
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)
     # create formatter and add it to the handlers
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     ch.setFormatter(formatter)
     # add the handler to the logger
     logger_main.addHandler(ch)

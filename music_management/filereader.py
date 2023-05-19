@@ -43,11 +43,11 @@ def _get_name_from_file(filename: str) -> str:
     :exception IOError when filename or file path is wrong
     """
     try:
-        with open(filename, encoding = 'utf-8') as file:
+        with open(filename, encoding='utf-8') as file:
             for line in file:
                 if 'Title' in line and len(line) > 6:
                     return line.split(' : ')[1].strip('\n')
-        return 'Title not found in '+ filename
+        return 'Title not found in ' + filename
     except IOError as err:
         print(err)
 

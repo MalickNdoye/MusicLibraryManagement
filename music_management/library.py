@@ -20,7 +20,7 @@ class MusicLibrary:
     def add_song(self, msc_obj: MusicTitle) -> None:
         """
             Add a song to an artist
-        :param msc_obj: MusicTilte object
+        :param msc_obj: MusicTitle object
         :return: Nothing
         :rtype: None
         """
