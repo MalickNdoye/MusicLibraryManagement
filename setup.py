@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='MusicLibraryManagement',
+    name='music_management',
     version='1.0.0',
     packages=['music_management'],
     url='',
